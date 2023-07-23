@@ -29,7 +29,10 @@ footer, header, hgroup, menu, nav, section {
 	display: block;
 }
 body {
+	height: 100vh;
 	line-height: 1;
+	overflow: hidden;
+	background-color: #3b3647;
 }
 ol, ul {
 	list-style: none;
@@ -48,6 +51,43 @@ table {
 }
 /* CSS RESET /////////////////////////////////////////*/
 
+.start-screen{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: rgb(43, 76, 92);
+	height: 100vh;
+	z-index: 1;
+}
+
+.choice-wrapper{
+	display: flex;
+	flex-direction: column;
+	height: 200px;
+	width: 400px;
+	background-color: #3b3647;
+	justify-content: space-around;
+	align-items: center;
+	border-radius: 10px;
+	-webkit-box-shadow: 1px 22px 44px -5px rgba(0,0,0,0.45);
+-moz-box-shadow: 1px 22px 44px -5px rgba(0,0,0,0.45);
+box-shadow: 1px 22px 44px -5px rgba(0,0,0,0.45);
+}
+
+.selection-wrapper{
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	height: 100px;
+	width: 70%;
+	background-color: rgb(130, 130, 160);
+	border-radius: 10px;
+}
+
+
+
+
+
 .wrapper{
 	display: grid;
 	grid-template-columns: 50px 50px 50px;
@@ -55,6 +95,7 @@ table {
 	align-content: center;
 	justify-content: center;
 	margin-top: 300px;
+	z-index: 1;
 }
 
 .wrapper div {
