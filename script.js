@@ -77,8 +77,9 @@ const playerStuff = (() => {
        const players = playerStuff.setupVsPlayer(); 
        player1 = players.player1
        player2 = players.player2
-       wrapper = document.querySelector(".selection-wrapper");
-       startScreen = document.querySelector(".start-screen")
+       const gameMain = document.querySelector(".wrapper")
+       const wrapper = document.querySelector(".selection-wrapper");
+       const startScreen = document.querySelector(".start-screen")
        while (wrapper.firstChild) {//removes game select buttons
         wrapper.removeChild(wrapper.firstChild);
        }
@@ -89,9 +90,8 @@ const playerStuff = (() => {
        player1.marker = "X";
        player2.marker = "O";
        startScreen.style.display = "none";
-       startScreen.style.height = "100vh"
+       gameMain.style.display = "grid";
        gameBoard.renderBoard()
-
        })
        const oBtn = document.createElement("button");
        oBtn.setAttribute("id","o-button");
@@ -99,16 +99,47 @@ const playerStuff = (() => {
        oBtn.addEventListener("click", () => {
        player1.marker = "O";
        player2.marker = "X";
+       startScreen.style.display = "none";
+       gameMain.style.display = "grid";
+       gameBoard.renderBoard()
        })
        wrapper.appendChild(xBtn);
-       wrapper.appendChild(oBtn);
-       
+       wrapper.appendChild(oBtn); 
     }
 
        const vsComputer = () => {
         const players = playerStuff.setupVsComputer(); 
         player1 = players.player1
         player2 = players.player2
+        const gameMain = document.querySelector(".wrapper")
+       const wrapper = document.querySelector(".selection-wrapper");
+       const startScreen = document.querySelector(".start-screen")
+       while (wrapper.firstChild) {//removes game select buttons
+        wrapper.removeChild(wrapper.firstChild);
+       }
+       const xBtn = document.createElement("button");
+       xBtn.setAttribute("id","x-button");
+       xBtn.innerText = "X"
+       xBtn.addEventListener("click", () => {
+       player1.marker = "X";
+       player2.marker = "O";
+       startScreen.style.display = "none";
+       gameMain.style.display = "grid";
+       gameBoard.renderBoard()
+       })
+       const oBtn = document.createElement("button");
+       oBtn.setAttribute("id","o-button");
+       oBtn.innerText = "O"
+       oBtn.addEventListener("click", () => {
+       player1.marker = "O";
+       player2.marker = "X";
+       startScreen.style.display = "none";
+       gameMain.style.display = "grid";
+       gameBoard.renderBoard()
+       })
+       wrapper.appendChild(xBtn);
+       wrapper.appendChild(oBtn); 
+        
      }
 
 

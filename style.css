@@ -89,7 +89,7 @@ box-shadow: 1px 22px 44px -5px rgba(0,0,0,0.45);
 
 
 .wrapper{
-	display: grid;
+	display: none;
 	grid-template-columns: 50px 50px 50px;
 	grid-template-rows: 50px 50px 50px;
 	align-content: center;
