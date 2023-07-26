@@ -42,7 +42,7 @@ const gameBoard = (() => {
                 div.setAttribute("class", "cell");
                 div.addEventListener("click", () => playerStuff.setMarker(div));
                 wrapper.appendChild(div);
-                div.innerText = gameBoard.board["row" + i][counter - 1]
+                div.innerHTML = gameBoard.board["row" + i][counter - 1]
             })
         }
     }
@@ -88,9 +88,9 @@ const playerStuff = (() => {
         xBtn.setAttribute("id", "x-button");
         xBtn.innerText = "X"
         xBtn.addEventListener("click", () => {
-            player1.marker = "X";
+            player1.marker = `<i class="fa-solid fa-x"></i>`;
             player1.turn = true;
-            player2.marker = "O";
+            player2.marker = `<i class="fa-solid fa-o"></i>`;
             player2.turn = false;
             startScreen.style.display = "none";//to switch from setup screen to game screen
             gameMain.style.display = "grid";
@@ -100,9 +100,9 @@ const playerStuff = (() => {
         oBtn.setAttribute("id", "o-button");
         oBtn.innerText = "O"
         oBtn.addEventListener("click", () => {
-            player1.marker = "O";
+            player1.marker = `<i class="fa-solid fa-o"></i>`;
             player1.turn = false
-            player2.marker = "X";
+            player2.marker = `<i class="fa-solid fa-x"></i>`;
             player2.turn = true;
             startScreen.style.display = "none";
             gameMain.style.display = "grid";
@@ -126,9 +126,9 @@ const playerStuff = (() => {
         xBtn.setAttribute("id", "x-button");
         xBtn.innerText = "X"
         xBtn.addEventListener("click", () => {
-            player1.marker = "X";
+            player1.marker = `<i class="fa-solid fa-x"></i>`;
             player1.turn = true;
-            player2.marker = "O";
+            player2.marker = `<i class="fa-solid fa-o"></i>`;
             player2.turn = false
             startScreen.style.display = "none";
             gameMain.style.display = "grid";
@@ -138,9 +138,9 @@ const playerStuff = (() => {
         oBtn.setAttribute("id", "o-button");
         oBtn.innerText = "O"
         oBtn.addEventListener("click", () => {
-            player1.marker = "O";
+            player1.marker = `<i class="fa-solid fa-o"></i>`;
             player1.marker = false;
-            player2.marker = "X";
+            player2.marker = `<i class="fa-solid fa-x"></i>`;
             player2.turn = true;
             startScreen.style.display = "none";
             gameMain.style.display = "grid";
@@ -212,4 +212,4 @@ function findOpenMoves() {
 }
 
 
-findOpenMoves()
+//findOpenMoves()
