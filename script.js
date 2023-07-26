@@ -139,18 +139,19 @@ const playerStuff = (() => {
         oBtn.innerText = "O"
         oBtn.addEventListener("click", () => {
             player1.marker = `<i class="fa-solid fa-o"></i>`;
-            player1.marker = false;
+            player1.turn = false;
             player2.marker = `<i class="fa-solid fa-x"></i>`;
             player2.turn = true;
             startScreen.style.display = "none";
             gameMain.style.display = "grid";
             gameBoard.renderBoard()
+            findOpenMoves()
+            computerMove()
+            toggleTurns()
         })
         wrapper.appendChild(xBtn);
         wrapper.appendChild(oBtn);
     }
-
-
 
     //allows only human players to set their marker if it is thier turn.
     const setMarker = (div) => {
@@ -169,10 +170,12 @@ const playerStuff = (() => {
             gameBoard.renderBoard()
             toggleTurns()
             if (player2.type == "computer") {
-                console.log("computer turn")
+                findOpenMoves()
+                computerMove()
+                toggleTurns();
+
             }
         }
-
 
     }
     //changes players turn with each round played
@@ -186,7 +189,39 @@ const playerStuff = (() => {
         }
     }
 
-    
+    const openMoves = () => {
+        const boardMoves = {
+            row1: ["", "", ""],
+            row2: ["", "", ""],
+            row3: ["", "", ""],
+        }
+    }
+
+    const findOpenMoves = () => {
+        const board = gameBoard.board;
+        const openMoves = [];
+        const target = "";
+        for (let i = 1; i <= 3; i++) {//this for loop iterates the rows
+            let array = board["row" + i];
+            for (let j = 0; j < 3; j++) {//this for loop iterates the index of each row
+                if (array[j] === target) {
+                    openMoves.push({ row: i, index: j });
+                }
+            }
+        }
+        boardMoves = openMoves;
+    }
+    const computerMove = () => {
+        board = gameBoard.board;
+        randomnum = Math.floor(Math.random() * boardMoves.length);
+        board['row' + boardMoves[randomnum].row][boardMoves[randomnum].index] = player2.marker
+        gameBoard.renderBoard()
+
+
+
+    }
+
+
 
     return {
         playerFactory,
@@ -196,47 +231,10 @@ const playerStuff = (() => {
         vsComputer,
         setMarker,
         toggleTurns,
+        openMoves,
+        findOpenMoves,
+        computerMove,
     };
 })();
 
 
-
-//findOpenMoves()
-function findOpenMoves() {
-    const board = gameBoard.board;
-    const target = "";
-
-    const openMoves = [];
-    for (let i = 1; i <= 3; i++) {//this for loop iterates the rows
-        let array = board["row" + i];
-        
-
-        for (let j = 0; j < 3; j++) {//this for loop iterates the index of each row
-            if (array[j] === target) {
-                openMoves.push({row: i, index: j});
-            }
-        }
-    }
-    console.log(openMoves)
-    console.log(openMoves.length)
-}
-
-//findOpenMoves()
-
-function findOpenMove (){
-   const board = gameBoard.board;
-   const openMoves = [];
-   const target ="";
-   for (let i = 1; i <= 3; i++){
-    let array = board['row' + i];
-    for (let j = 0; j < array.length; j++) {
-        if (array[i] === target){
-            openMoves.push({row:i, index:j});
-        }
-        
-    }
-   }
-   console.log(openMoves)
-}
-
-findOpenMove()
