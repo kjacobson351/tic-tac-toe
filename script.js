@@ -14,7 +14,7 @@ const gameBoard = (() => {
     }
 
 
-    const setMarker = (div) => {
+    /*const setMarker = (div) => {
         console.log(div)
         divId = div.id
         const row = divId.slice(3, 4)
@@ -23,7 +23,7 @@ const gameBoard = (() => {
         board["row" + row][column] = player1.marker;
         renderBoard()//doesn't need gamboard.renderBoard()?
 
-    }
+    }*/
     //first destroys board then renders board with updated values
     const renderBoard = () => {
         let wrapper = document.querySelector(".wrapper");
@@ -40,7 +40,7 @@ const gameBoard = (() => {
                 let div = document.createElement("div");
                 div.setAttribute("id", `row${i}-column${counter}`);
                 div.setAttribute("class", "cell");
-                div.addEventListener("click", () => gameBoard.setMarker(div));
+                div.addEventListener("click", () => playerStuff.setMarker(div));
                 wrapper.appendChild(div);
                 div.innerText = gameBoard.board["row" + i][counter - 1]
             })
@@ -49,119 +49,167 @@ const gameBoard = (() => {
     return {
         board,
         resetBoard,
-        setMarker,
+        /*setMarker,*/
         renderBoard,
     }
 })();
 
 
+//IIFE for player related objects and methods
 
 const playerStuff = (() => {
-    const playerFactory = (name, type, marker = null) => {
-        return {name, type, marker};
+    const playerFactory = (name, type, marker = null, turn = null) => {//set plyaer attributes that can be set initially with placeholders for those that need user input.
+        return { name, type, marker };
     }
 
     const setupVsPlayer = () => {
         let player1 = playerFactory("player1", "human");
         let player2 = playerFactory("player2", "human");
-        return {player1, player2}
+        return { player1, player2 }
     }
 
     const setupVsComputer = () => {
         const player1 = playerFactory("player1", "human");
         const player2 = playerFactory("player2", "computer");
-        return {player1, player2}
+        return { player1, player2 }
     }
 
-    const vsPlayer = () => {
-       const players = playerStuff.setupVsPlayer(); 
-       player1 = players.player1
-       player2 = players.player2
-       const gameMain = document.querySelector(".wrapper")
-       const wrapper = document.querySelector(".selection-wrapper");
-       const startScreen = document.querySelector(".start-screen")
-       while (wrapper.firstChild) {//removes game select buttons
-        wrapper.removeChild(wrapper.firstChild);
-       }
-       const xBtn = document.createElement("button");
-       xBtn.setAttribute("id","x-button");
-       xBtn.innerText = "X"
-       xBtn.addEventListener("click", () => {
-       player1.marker = "X";
-       player2.marker = "O";
-       startScreen.style.display = "none";
-       gameMain.style.display = "grid";
-       gameBoard.renderBoard()
-       })
-       const oBtn = document.createElement("button");
-       oBtn.setAttribute("id","o-button");
-       oBtn.innerText = "O"
-       oBtn.addEventListener("click", () => {
-       player1.marker = "O";
-       player2.marker = "X";
-       startScreen.style.display = "none";
-       gameMain.style.display = "grid";
-       gameBoard.renderBoard()
-       })
-       wrapper.appendChild(xBtn);
-       wrapper.appendChild(oBtn); 
+    const vsPlayer = () => {// sets attributes that required user input
+        const players = playerStuff.setupVsPlayer();
+        player1 = players.player1;
+        player2 = players.player2;
+        const gameMain = document.querySelector(".wrapper")
+        const wrapper = document.querySelector(".selection-wrapper");
+        const startScreen = document.querySelector(".start-screen")
+        while (wrapper.firstChild) {//removes game select buttons that were in index.html
+            wrapper.removeChild(wrapper.firstChild);
+        }
+        const xBtn = document.createElement("button");//creates marker choice buttons and sets markers to player dependig on choice
+        xBtn.setAttribute("id", "x-button");
+        xBtn.innerText = "X"
+        xBtn.addEventListener("click", () => {
+            player1.marker = "X";
+            player1.turn = true;
+            player2.marker = "O";
+            player2.turn = false;
+            startScreen.style.display = "none";//to switch from setup screen to game screen
+            gameMain.style.display = "grid";
+            gameBoard.renderBoard()
+        })
+        const oBtn = document.createElement("button");
+        oBtn.setAttribute("id", "o-button");
+        oBtn.innerText = "O"
+        oBtn.addEventListener("click", () => {
+            player1.marker = "O";
+            player1.turn = false
+            player2.marker = "X";
+            player2.turn = true;
+            startScreen.style.display = "none";
+            gameMain.style.display = "grid";
+            gameBoard.renderBoard()
+        })
+        wrapper.appendChild(xBtn);
+        wrapper.appendChild(oBtn);
     }
 
-       const vsComputer = () => {
-        const players = playerStuff.setupVsComputer(); 
+    const vsComputer = () => {
+        const players = playerStuff.setupVsComputer();
         player1 = players.player1
         player2 = players.player2
         const gameMain = document.querySelector(".wrapper")
-       const wrapper = document.querySelector(".selection-wrapper");
-       const startScreen = document.querySelector(".start-screen")
-       while (wrapper.firstChild) {//removes game select buttons
-        wrapper.removeChild(wrapper.firstChild);
-       }
-       const xBtn = document.createElement("button");
-       xBtn.setAttribute("id","x-button");
-       xBtn.innerText = "X"
-       xBtn.addEventListener("click", () => {
-       player1.marker = "X";
-       player2.marker = "O";
-       startScreen.style.display = "none";
-       gameMain.style.display = "grid";
-       gameBoard.renderBoard()
-       })
-       const oBtn = document.createElement("button");
-       oBtn.setAttribute("id","o-button");
-       oBtn.innerText = "O"
-       oBtn.addEventListener("click", () => {
-       player1.marker = "O";
-       player2.marker = "X";
-       startScreen.style.display = "none";
-       gameMain.style.display = "grid";
-       gameBoard.renderBoard()
-       })
-       wrapper.appendChild(xBtn);
-       wrapper.appendChild(oBtn); 
-        
-     }
+        const wrapper = document.querySelector(".selection-wrapper");
+        const startScreen = document.querySelector(".start-screen")
+        while (wrapper.firstChild) {//removes game select buttons
+            wrapper.removeChild(wrapper.firstChild);
+        }
+        const xBtn = document.createElement("button");
+        xBtn.setAttribute("id", "x-button");
+        xBtn.innerText = "X"
+        xBtn.addEventListener("click", () => {
+            player1.marker = "X";
+            player1.turn = true;
+            player2.marker = "O";
+            player2.turn = false
+            startScreen.style.display = "none";
+            gameMain.style.display = "grid";
+            gameBoard.renderBoard()
+        })
+        const oBtn = document.createElement("button");
+        oBtn.setAttribute("id", "o-button");
+        oBtn.innerText = "O"
+        oBtn.addEventListener("click", () => {
+            player1.marker = "O";
+            player1.marker = false;
+            player2.marker = "X";
+            player2.turn = true;
+            startScreen.style.display = "none";
+            gameMain.style.display = "grid";
+            gameBoard.renderBoard()
+        })
+        wrapper.appendChild(xBtn);
+        wrapper.appendChild(oBtn);
+    }
 
 
-    return {playerFactory,
-           setupVsPlayer,
-           setupVsComputer,
-           vsPlayer,
-           vsComputer,
+
+    //allows only human players to set their marker if it is thier turn.
+    const setMarker = (div) => {
+
+        if ((player1.turn == true && player1.type == "human") || (player2.turn == true && player2.type == "human")) {
+            divId = div.id
+            const row = divId.slice(3, 4)//gets the row and index from slicing the cell ID
+            const column = divId.slice(11, 12) - 1;
+            let board = gameBoard.board;
+            if (player1.turn === true) {
+                board["row" + row][column] = player1.marker;
+
+            } else {
+                board["row" + row][column] = player2.marker;
+            }
+            gameBoard.renderBoard()
+            toggleTurns()
+        }
+
+
+    }
+    //changes players turn with each round played
+    const toggleTurns = () => {
+        if (player1.turn == true) {
+            player1.turn = false;
+            player2.turn = true;
+        } else {
+            player1.turn = true;
+            player2.turn = false;
+        }
+    }
+
+    return {
+        playerFactory,
+        setupVsPlayer,
+        setupVsComputer,
+        vsPlayer,
+        vsComputer,
+        setMarker,
+        toggleTurns,
     };
 })();
 
 
 
+//to be added to player IIFE
+
+function findOpenMoves() {
+    const indices = [];
+    let array = gameBoard.board.row1
+
+    const element = "";
+    let index = array.indexOf(element);
+    while (index !== -1) {
+        indices.push(index);
+        index = array.indexOf(element, index + 1);
+    }
+    console.log(indices);
+}
 
 
-/*const player1 = playerFactory("kyle", "69")
-console.log(player1.marker)*/
-
-
-
-
-
-
-
-
+findOpenMoves()

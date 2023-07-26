@@ -106,7 +106,8 @@ box-shadow: 1px 22px 44px -5px rgba(0,0,0,0.45);
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	font-size: 25px;	
+	font-size: 25px;
+	color: white;	
 }
 
 #row1-column1 {
