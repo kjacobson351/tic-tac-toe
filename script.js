@@ -168,6 +168,9 @@ const playerStuff = (() => {
             }
             gameBoard.renderBoard()
             toggleTurns()
+            if (player2.type == "computer") {
+                console.log("computer turn")
+            }
         }
 
 
@@ -183,6 +186,8 @@ const playerStuff = (() => {
         }
     }
 
+    
+
     return {
         playerFactory,
         setupVsPlayer,
@@ -196,20 +201,42 @@ const playerStuff = (() => {
 
 
 
-//to be added to player IIFE
-
+//findOpenMoves()
 function findOpenMoves() {
-    const indices = [];
-    let array = gameBoard.board.row1
+    const board = gameBoard.board;
+    const target = "";
 
-    const element = "";
-    let index = array.indexOf(element);
-    while (index !== -1) {
-        indices.push(index);
-        index = array.indexOf(element, index + 1);
+    const openMoves = [];
+    for (let i = 1; i <= 3; i++) {//this for loop iterates the rows
+        let array = board["row" + i];
+        
+
+        for (let j = 0; j < 3; j++) {//this for loop iterates the index of each row
+            if (array[j] === target) {
+                openMoves.push({row: i, index: j});
+            }
+        }
     }
-    console.log(indices);
+    console.log(openMoves)
+    console.log(openMoves.length)
 }
 
-
 //findOpenMoves()
+
+function findOpenMove (){
+   const board = gameBoard.board;
+   const openMoves = [];
+   const target ="";
+   for (let i = 1; i <= 3; i++){
+    let array = board['row' + i];
+    for (let j = 0; j < array.length; j++) {
+        if (array[i] === target){
+            openMoves.push({row:i, index:j});
+        }
+        
+    }
+   }
+   console.log(openMoves)
+}
+
+findOpenMove()
