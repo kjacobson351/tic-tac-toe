@@ -252,7 +252,7 @@ function winCheck() {
             if (player1.turn === true) {
                 player1Win();
             } else {
-                player2Win();
+               // player2Win();
             }
         }
     }
@@ -263,7 +263,7 @@ function winCheck() {
             if (player1.turn === true) {
                 player1Win();
             } else {
-                player2Win();
+               // player2Win();
             }
         }
     }
@@ -272,14 +272,14 @@ function winCheck() {
         if (player1.turn === true) {
             player1Win();
         } else {
-            player2Win();
+           // player2Win();
         }
     }
     if (board.row3[0] === board.row2[1] && board.row1[2] === board.row3[0] && board.row3[0] != "") {
         if (player1.turn === true) {
             player1Win();
         } else {
-            player2Win();
+           // player2Win();
         }
     }
 }
