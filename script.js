@@ -243,11 +243,21 @@ const playerStuff = (() => {
 
 
 function winCheck() {
-board = gameBoard.board;
+const board = gameBoard.board;
+const winMessage = document.querySelector(".win-message");
+const game = document.querySelector(".wrapper")
 //check all row win conditionts for both player 1 and 2
 for(let i = 1; i <= 3; i++){
     if (board["row" + i][0] === board["row" + i][1] && board["row" + i][2] === board["row" + i][0] && board["row"+ i][0] != ""){
-        console.log("ROW WIN")
+        if (player1.turn === true){
+            winMessage.innerHTML = `${player1.marker} WINS!`
+            winMessage.style.display = "block";
+            game.style.webkitFilter = "blur(3px)"
+        } else {
+            winMessage.innerHTML = `${player2.marker} WINS!`
+            winMessage.style.display = "block";
+            game.style.webkitFilter = "blur(3px)"
+        }
     }
 }
 //check all column win conditions
@@ -257,9 +267,16 @@ for (let i = 0; i <= 2; i++){
             console.log("COLUMN WIN")
         }    
 }
+//check diagonal win conditions
+if (board.row1[0] === board.row2[1] && board.row3[2] === board.row1[0] && board.row1[0] != ""){
+    console.log("DIAGONAL WIN")
+}
+if (board.row3[0] === board.row2[1] && board.row1[2] === board.row3[0] && board.row3[0] != ""){
+    console.log("DIAGONAL WIN")
+}
 }
 
-winCheck()
+
 /*
 const gameBoard = (() => {
     const board = {
