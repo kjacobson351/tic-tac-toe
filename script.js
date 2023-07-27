@@ -170,7 +170,7 @@ const playerStuff = (() => {
             gameBoard.renderBoard()
             winCheck()
             toggleTurns()
-            
+
             if (player2.type == "computer") {
                 findOpenMoves()
                 computerMove()
@@ -243,58 +243,62 @@ const playerStuff = (() => {
 
 
 function winCheck() {
-const board = gameBoard.board;
-const winMessage = document.querySelector(".win-message");
-const game = document.querySelector(".wrapper")
-//check all row win conditionts for both player 1 and 2
-for(let i = 1; i <= 3; i++){
-    if (board["row" + i][0] === board["row" + i][1] && board["row" + i][2] === board["row" + i][0] && board["row"+ i][0] != ""){
-        if (player1.turn === true){
+    const board = gameBoard.board;
+    const winMessage = document.querySelector(".win-message");
+    const game = document.querySelector(".wrapper")
+    //check all row win conditionts for both player 1 and 2
+    for (let i = 1; i <= 3; i++) {
+        if (board["row" + i][0] === board["row" + i][1] && board["row" + i][2] === board["row" + i][0] && board["row" + i][0] != "") {
+            if (player1.turn === true) {
+                player1Win();
+            } else {
+                player2Win();
+            }
+        }
+    }
+    //check all column win conditions
+    for (let i = 0; i <= 2; i++) {
+        if (board.row1[i] === board.row2[i] && board.row3[i] ===
+            board.row1[i] && board.row1[i] != "") {
+            if (player1.turn === true) {
+                player1Win();
+            } else {
+                player2Win();
+            }
+        }
+    }
+    //check diagonal win conditions
+    if (board.row1[0] === board.row2[1] && board.row3[2] === board.row1[0] && board.row1[0] != "") {
+        if (player1.turn === true) {
+            player1Win();
+        } else {
+            player2Win();
+        }
+    }
+    if (board.row3[0] === board.row2[1] && board.row1[2] === board.row3[0] && board.row3[0] != "") {
+        if (player1.turn === true) {
             player1Win();
         } else {
             player2Win();
         }
     }
 }
-//check all column win conditions
-for (let i = 0; i <= 2; i++){
-    if (board.row1[i] === board.row2[i] && board.row3[i] ===
-        board.row1[i] && board.row1[i] != ""){
-            if (player1.turn === true){
-                player1Win();
-            } else {
-                player2Win();
-            }
-        }    
-}
-//check diagonal win conditions
-if (board.row1[0] === board.row2[1] && board.row3[2] === board.row1[0] && board.row1[0] != ""){
-    console.log("DIAGONAL WIN")
-}
-if (board.row3[0] === board.row2[1] && board.row1[2] === board.row3[0] && board.row3[0] != ""){
-    if (player1.turn === true){
-        player1Win();
-    } else {
-        player2Win();
-    }
-}
-}
 
-function player1Win(){
+function player1Win() {
     const winMessage = document.querySelector(".win-message");
     const game = document.querySelector(".wrapper")
     winMessage.innerHTML = `${player1.marker} WINS!`
-            winMessage.style.display = "block";
-            game.style.webkitFilter = "blur(3px)"
+    winMessage.style.display = "block";
+    game.style.webkitFilter = "blur(3px)"
 
 }
 
-function plaer2Win(){
+function player2Win() {
     const winMessage = document.querySelector(".win-message");
     const game = document.querySelector(".wrapper")
     winMessage.innerHTML = `${player2.marker} WINS!`
-            winMessage.style.display = "block";
-            game.style.webkitFilter = "blur(3px)"
+    winMessage.style.display = "block";
+    game.style.webkitFilter = "blur(3px)"
 
 }
 
