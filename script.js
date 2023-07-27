@@ -168,10 +168,13 @@ const playerStuff = (() => {
                 board["row" + row][column] = player2.marker;
             }
             gameBoard.renderBoard()
+            winCheck()
             toggleTurns()
+            
             if (player2.type == "computer") {
                 findOpenMoves()
                 computerMove()
+                winCheck()
                 toggleTurns();
 
             }
@@ -216,6 +219,7 @@ const playerStuff = (() => {
         randomnum = Math.floor(Math.random() * boardMoves.length);
         board['row' + boardMoves[randomnum].row][boardMoves[randomnum].index] = player2.marker
         gameBoard.renderBoard()
+        winCheck()
 
 
 
@@ -238,3 +242,29 @@ const playerStuff = (() => {
 })();
 
 
+function winCheck() {
+board = gameBoard.board;
+//check all row win conditionts for both player 1 and 2
+for(let i = 1; i <= 3; i++){
+    if (board["row" + i][0] === board["row" + i][1] && board["row" + i][2] === board["row" + i][0] && board["row"+ i][0] != ""){
+        console.log("ROW WIN")
+    }
+}
+//check all column win conditions
+for (let i = 0; i <= 2; i++){
+    if (board.row1[i] === board.row2[i] && board.row3[i] ===
+        board.row1[i] && board.row1[i] != ""){
+            console.log("COLUMN WIN")
+        }    
+}
+}
+
+winCheck()
+/*
+const gameBoard = (() => {
+    const board = {
+        row1: ["", "", ""],
+        row2: ["", "", ""],
+        row3: ["", "", ""],
+    }
+*/ 
