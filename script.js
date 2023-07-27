@@ -250,13 +250,9 @@ const game = document.querySelector(".wrapper")
 for(let i = 1; i <= 3; i++){
     if (board["row" + i][0] === board["row" + i][1] && board["row" + i][2] === board["row" + i][0] && board["row"+ i][0] != ""){
         if (player1.turn === true){
-            winMessage.innerHTML = `${player1.marker} WINS!`
-            winMessage.style.display = "block";
-            game.style.webkitFilter = "blur(3px)"
+            player1Win();
         } else {
-            winMessage.innerHTML = `${player2.marker} WINS!`
-            winMessage.style.display = "block";
-            game.style.webkitFilter = "blur(3px)"
+            player2Win();
         }
     }
 }
@@ -264,7 +260,11 @@ for(let i = 1; i <= 3; i++){
 for (let i = 0; i <= 2; i++){
     if (board.row1[i] === board.row2[i] && board.row3[i] ===
         board.row1[i] && board.row1[i] != ""){
-            console.log("COLUMN WIN")
+            if (player1.turn === true){
+                player1Win();
+            } else {
+                player2Win();
+            }
         }    
 }
 //check diagonal win conditions
@@ -272,8 +272,30 @@ if (board.row1[0] === board.row2[1] && board.row3[2] === board.row1[0] && board.
     console.log("DIAGONAL WIN")
 }
 if (board.row3[0] === board.row2[1] && board.row1[2] === board.row3[0] && board.row3[0] != ""){
-    console.log("DIAGONAL WIN")
+    if (player1.turn === true){
+        player1Win();
+    } else {
+        player2Win();
+    }
 }
+}
+
+function player1Win(){
+    const winMessage = document.querySelector(".win-message");
+    const game = document.querySelector(".wrapper")
+    winMessage.innerHTML = `${player1.marker} WINS!`
+            winMessage.style.display = "block";
+            game.style.webkitFilter = "blur(3px)"
+
+}
+
+function plaer2Win(){
+    const winMessage = document.querySelector(".win-message");
+    const game = document.querySelector(".wrapper")
+    winMessage.innerHTML = `${player2.marker} WINS!`
+            winMessage.style.display = "block";
+            game.style.webkitFilter = "blur(3px)"
+
 }
 
 
