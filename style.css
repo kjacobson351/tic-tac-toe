@@ -91,6 +91,10 @@ box-shadow: 1px 22px 44px -5px rgba(0,0,0,0.45);
 
 .wrapper{
 	display: none;
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	top: -33%;
 	
 	grid-template-columns: repeat(3,100px);
 	grid-template-rows: repeat(3,100px);
