@@ -161,15 +161,19 @@ const playerStuff = (() => {
             const row = divId.slice(3, 4)//gets the row and index from slicing the cell ID
             const column = divId.slice(11, 12) - 1;
             let board = gameBoard.board;
-            if (player1.turn === true) {
+            if (player1.turn === true && board["row" + row][column] === "") {
                 board["row" + row][column] = player1.marker;
+                gameBoard.renderBoard()
+                winCheck()
+                toggleTurns()
 
-            } else {
+            } else if(player2.turn === true && board["row" + row][column] === "") {
                 board["row" + row][column] = player2.marker;
+                gameBoard.renderBoard()
+                winCheck()
+                toggleTurns()
             }
-            gameBoard.renderBoard()
-            winCheck()
-            toggleTurns()
+
 
             if (player2.type === "computer" && player2.turn === true && player2.win == false) {
                 findOpenMoves()
