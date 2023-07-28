@@ -20,6 +20,8 @@
             <div class="selection-wrapper">
                 <button id="player-v-player" class="select-buttons" onclick="playerStuff.vsPlayer()">vs Player</button>
                 <button id="player-v-computer" class="select-buttons" onclick="playerStuff.vsComputer()">vs Computer</button>
+                <button id="x-button" onclick="xButton()">X</button>
+                <button id="o-button"onclick="oButton()">O</button>
             </div>
         </div>
     </div>
@@ -28,7 +30,10 @@
         
     </div>
     <div class="win-message">
-        The WINNER IS PLAYER 1
+        
+    </div>
+    <div class="reset-buttons">
+        <button id = "play-again" onclick="playAgain()">Play again</button><button id = "restart" onclick="restart()">Restart</button>
     </div>
 <script src="./script.js"></script>
 </body>

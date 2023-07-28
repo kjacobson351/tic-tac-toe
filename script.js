@@ -81,77 +81,100 @@ const playerStuff = (() => {
         const gameMain = document.querySelector(".wrapper")
         const wrapper = document.querySelector(".selection-wrapper");
         const startScreen = document.querySelector(".start-screen")
-        while (wrapper.firstChild) {//removes game select buttons that were in index.html
+        const pvp = document.getElementById("player-v-player")
+        const pc = document.getElementById("player-v-computer")
+        const xButton = document.getElementById("x-button");
+        const oButton = document.getElementById("o-button");
+        xButton.style.display = "block";
+        oButton.style.display = "block";
+        /*while (wrapper.firstChild) {//removes game select buttons that were in index.html
             wrapper.removeChild(wrapper.firstChild);
-        }
-        const xBtn = document.createElement("button");//creates marker choice buttons and sets markers to player dependig on choice
-        xBtn.setAttribute("id", "x-button");
-        xBtn.innerText = "X"
-        xBtn.addEventListener("click", () => {
-            player1.marker = `<i class="fa-solid fa-x"></i>`;
-            player1.turn = true;
-            player2.marker = `<i class="fa-solid fa-o"></i>`;
-            player2.turn = false;
-            startScreen.style.display = "none";//to switch from setup screen to game screen
-            gameMain.style.display = "grid";
-            gameBoard.renderBoard()
-        })
-        const oBtn = document.createElement("button");
-        oBtn.setAttribute("id", "o-button");
-        oBtn.innerText = "O"
-        oBtn.addEventListener("click", () => {
-            player1.marker = `<i class="fa-solid fa-o"></i>`;
-            player1.turn = false
-            player2.marker = `<i class="fa-solid fa-x"></i>`;
-            player2.turn = true;
-            startScreen.style.display = "none";
-            gameMain.style.display = "grid";
-            gameBoard.renderBoard()
-        })
-        wrapper.appendChild(xBtn);
-        wrapper.appendChild(oBtn);
+        }*/
+        pvp.style.display = "none";
+        pc.style.display = "none";
     }
+    /* const xBtn = document.createElement("button");//creates marker choice buttons and sets markers to player dependig on choice
+     xBtn.setAttribute("id", "x-button");
+     xBtn.innerText = "X"
+     xBtn.addEventListener("click", () => {
+         player1.marker = `<i class="fa-solid fa-x"></i>`;
+         player1.turn = true;
+         player2.marker = `<i class="fa-solid fa-o"></i>`;
+         player2.turn = false;
+         startScreen.style.display = "none";//to switch from setup screen to game screen
+         gameMain.style.display = "grid";
+         gameBoard.renderBoard()
+     })
+     const oBtn = document.createElement("button");
+     oBtn.setAttribute("id", "o-button");
+     oBtn.innerText = "O"
+     oBtn.addEventListener("click", () => {
+         player1.marker = `<i class="fa-solid fa-o"></i>`;
+         player1.turn = false
+         player2.marker = `<i class="fa-solid fa-x"></i>`;
+         player2.turn = true;
+         startScreen.style.display = "none";
+         gameMain.style.display = "grid";
+         gameBoard.renderBoard()
+     })
+     wrapper.appendChild(xBtn);
+     wrapper.appendChild(oBtn);
+ }*/
 
     const vsComputer = () => {
+        console.log("vs computer ran")
         const players = playerStuff.setupVsComputer();
         player1 = players.player1
         player2 = players.player2
         const gameMain = document.querySelector(".wrapper")
         const wrapper = document.querySelector(".selection-wrapper");
         const startScreen = document.querySelector(".start-screen")
-        while (wrapper.firstChild) {//removes game select buttons
+        const pvp = document.getElementById("player-v-player")
+        const pc = document.getElementById("player-v-computer")
+        const xButton = document.getElementById("x-button");
+        const oButton = document.getElementById("o-button");
+        xButton.style.display = "block";
+        oButton.style.display = "block";
+        /*while (wrapper.firstChild) {//removes game select buttons
             wrapper.removeChild(wrapper.firstChild);
-        }
-        const xBtn = document.createElement("button");
-        xBtn.setAttribute("id", "x-button");
-        xBtn.innerText = "X"
-        xBtn.addEventListener("click", () => {
-            player1.marker = `<i class="fa-solid fa-x"></i>`;
-            player1.turn = true;
-            player2.marker = `<i class="fa-solid fa-o"></i>`;
-            player2.turn = false
-            startScreen.style.display = "none";
-            gameMain.style.display = "grid";
-            gameBoard.renderBoard()
-        })
-        const oBtn = document.createElement("button");
-        oBtn.setAttribute("id", "o-button");
-        oBtn.innerText = "O"
-        oBtn.addEventListener("click", () => {
-            player1.marker = `<i class="fa-solid fa-o"></i>`;
-            player1.turn = false;
-            player2.marker = `<i class="fa-solid fa-x"></i>`;
-            player2.turn = true;
-            startScreen.style.display = "none";
-            gameMain.style.display = "grid";
-            gameBoard.renderBoard()
-            findOpenMoves()
-            computerMove()
-            toggleTurns()
-        })
-        wrapper.appendChild(xBtn);
-        wrapper.appendChild(oBtn);
+        }*/
+
+        pvp.style.display = "none";
+        pc.style.display = "none";
     }
+    /*const xBtn = document.createElement("button");
+    xBtn.setAttribute("id", "x-button");
+    xBtn.innerText = "X"
+    xBtn.addEventListener("click", () => {
+        player1.marker = `<i class="fa-solid fa-x"></i>`;
+        player1.turn = true;
+        player2.marker = `<i class="fa-solid fa-o"></i>`;
+        player2.turn = false
+        startScreen.style.display = "none";
+        gameMain.style.display = "grid";
+        gameBoard.renderBoard()
+    })
+    const oBtn = document.createElement("button");
+    oBtn.setAttribute("id", "o-button");
+    oBtn.innerText = "O"
+    oBtn.addEventListener("click", () => {
+        console.log("O ran")
+        player1.marker = `<i class="fa-solid fa-o"></i>`;
+        player1.turn = false;
+        player2.marker = `<i class="fa-solid fa-x"></i>`;
+        player2.turn = true;
+        //player2.type = "computer"
+        console.log(player2.type)
+        startScreen.style.display = "none";
+        gameMain.style.display = "grid";
+        gameBoard.renderBoard()
+        findOpenMoves()
+        computerMove()
+        toggleTurns()
+    })
+    wrapper.appendChild(xBtn);
+    wrapper.appendChild(oBtn);
+}*/
 
     //allows only human players to set their marker if it is thier turn.
     const setMarker = (div) => {
@@ -167,7 +190,7 @@ const playerStuff = (() => {
                 winCheck()
                 toggleTurns()
 
-            } else if(player2.turn === true && board["row" + row][column] === "") {
+            } else if (player2.turn === true && board["row" + row][column] === "") {
                 board["row" + row][column] = player2.marker;
                 gameBoard.renderBoard()
                 winCheck()
@@ -187,7 +210,6 @@ const playerStuff = (() => {
     }
     //changes players turn with each round played
     const toggleTurns = () => {
-        console.log(player1.turn)
         if (player1.turn == true) {
             player1.turn = false;
             player2.turn = true;
@@ -195,7 +217,6 @@ const playerStuff = (() => {
             player1.turn = true;
             player2.turn = false;
         }
-        console.log(player1.turn)
     }
 
     const openMoves = () => {
@@ -304,8 +325,11 @@ function player1Win() {
     player2.turn = false;
     const winMessage = document.querySelector(".win-message");
     const game = document.querySelector(".wrapper")
+    const buttons = document.querySelector(".reset-buttons")
+
     winMessage.innerHTML = `${player1.marker} WINS!`
     winMessage.style.display = "block";
+    buttons.style.display = "flex"
     game.style.webkitFilter = "blur(3px)"
     player1.win = true;
 
@@ -320,8 +344,10 @@ function player2Win() {
     player2.turn = false;
     const winMessage = document.querySelector(".win-message");
     const game = document.querySelector(".wrapper")
+    const buttons = document.querySelector(".reset-buttons")
     winMessage.innerHTML = `${player2.marker} WINS!`
     winMessage.style.display = "block";
+    buttons.style.display = "flex"
     game.style.webkitFilter = "blur(3px)"
     player2.win = true
 
@@ -332,3 +358,70 @@ function player2Win() {
 }
 
 
+function playAgain() {
+    const winMessage = document.querySelector(".win-message");
+    const game = document.querySelector(".wrapper")
+    const buttons = document.querySelector(".reset-buttons")
+    winMessage.style.display = "none";
+    game.style.webkitFilter = "";
+    buttons.style.display = "none"
+    gameBoard.resetBoard();
+    gameBoard.renderBoard();
+    player1.win = false
+    player2.win = false
+
+}
+
+function restart() {
+    const winMessage = document.querySelector(".win-message");
+    const game = document.querySelector(".wrapper")
+    const buttons = document.querySelector(".reset-buttons")
+    const startScreen = document.querySelector(".start-screen")
+    const select = document.querySelector("selection-wrapper");
+    const xButton = document.getElementById("x-button");
+    const oButton = document.getElementById("o-button");
+    gameBoard.resetBoard();
+    gameBoard.renderBoard();
+    game.style.webkitFilter = "";
+    startScreen.style.display = "flex"
+    winMessage.style.display = "none";
+    buttons.style.display = "none";
+    game.style.display = "none";
+    player1.win = false
+    player2.win = false
+    const pvp = document.getElementById("player-v-player")
+    const pc = document.getElementById("player-v-computer")
+    pvp.style.display = "";
+    pc.style.display = "";
+    xButton.style.display = "none"
+    oButton.style.display = "none"
+}
+
+function xButton() {
+    const startScreen = document.querySelector(".start-screen")
+    const gameMain = document.querySelector(".wrapper")
+    player1.marker = `<i class="fa-solid fa-x"></i>`;
+    player1.turn = true;
+    player2.marker = `<i class="fa-solid fa-o"></i>`;
+    player2.turn = false;
+    startScreen.style.display = "none";//to switch from setup screen to game screen
+    gameMain.style.display = "grid";
+    gameBoard.renderBoard()
+}
+
+function oButton() {
+    const startScreen = document.querySelector(".start-screen")
+    const gameMain = document.querySelector(".wrapper")
+    player1.marker = `<i class="fa-solid fa-o"></i>`;
+    player1.turn = false
+    player2.marker = `<i class="fa-solid fa-x"></i>`;
+    player2.turn = true;
+    startScreen.style.display = "none";
+    gameMain.style.display = "grid";
+    gameBoard.renderBoard()
+    if (player2.type === "computer"){
+    playerStuff.findOpenMoves()
+    playerStuff.computerMove()
+    playerStuff.toggleTurns()
+    }
+}

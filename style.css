@@ -85,6 +85,12 @@ box-shadow: 1px 22px 44px -5px rgba(0,0,0,0.45);
 	border-radius: 10px;
 }
 
+#x-button{
+	display: none;
+}
+#o-button{
+	display: none;
+}
 
 
 
@@ -115,6 +121,23 @@ left: 0%;
 text-align:center;
 color: white;
 font-size: 2rem;
+z-index: 2;
+}
+
+.reset-buttons {
+	display: none;
+	justify-content: space-around;
+	position: absolute;
+	width: 100%;
+	top: 60%;
+}
+.reset-buttons button {
+	width: 80px;
+	border-radius: 8px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	white-space: nowrap;
+	z-index: 3;
 }
 
 
