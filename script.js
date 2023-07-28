@@ -33,7 +33,7 @@ const gameBoard = (() => {
             cell.remove();
         });
         //The for loop iterates through the rows while the forEach method iterates through the row index
-        for (let i = 1; i < 4; i++) {
+        for (let i = 1; i <= 3; i++) {
             let counter = 0;
             gameBoard.board["row" + i].forEach(element => {
                 counter++;
@@ -58,8 +58,8 @@ const gameBoard = (() => {
 //IIFE for player related objects and methods
 
 const playerStuff = (() => {
-    const playerFactory = (name, type, marker = null, turn = null) => {//set plyaer attributes that can be set initially with placeholders for those that need user input.
-        return { name, type, marker };
+    const playerFactory = (name, type, marker = null, turn = null, win = false) => {//set plyaer attributes that can be set initially with placeholders for those that need user input.
+        return { name, type, marker, win };
     }
 
     const setupVsPlayer = () => {
@@ -156,7 +156,7 @@ const playerStuff = (() => {
     //allows only human players to set their marker if it is thier turn.
     const setMarker = (div) => {
 
-        if ((player1.turn == true && player1.type == "human") || (player2.turn == true && player2.type == "human")) {
+        if ((player1.turn == true && player1.type == "human" && player1.win == false) || (player2.turn == true && player2.type == "human" && player2.win == false)) {
             divId = div.id
             const row = divId.slice(3, 4)//gets the row and index from slicing the cell ID
             const column = divId.slice(11, 12) - 1;
@@ -171,7 +171,7 @@ const playerStuff = (() => {
             winCheck()
             toggleTurns()
 
-            if (player2.type == "computer") {
+            if (player2.type === "computer" && player2.turn === true && player2.win == false) {
                 findOpenMoves()
                 computerMove()
                 winCheck()
@@ -183,6 +183,7 @@ const playerStuff = (() => {
     }
     //changes players turn with each round played
     const toggleTurns = () => {
+        console.log(player1.turn)
         if (player1.turn == true) {
             player1.turn = false;
             player2.turn = true;
@@ -190,6 +191,7 @@ const playerStuff = (() => {
             player1.turn = true;
             player2.turn = false;
         }
+        console.log(player1.turn)
     }
 
     const openMoves = () => {
@@ -218,8 +220,9 @@ const playerStuff = (() => {
         board = gameBoard.board;
         randomnum = Math.floor(Math.random() * boardMoves.length);
         board['row' + boardMoves[randomnum].row][boardMoves[randomnum].index] = player2.marker
+        findOpenMoves()
         gameBoard.renderBoard()
-        winCheck()
+
 
 
 
@@ -251,8 +254,10 @@ function winCheck() {
         if (board["row" + i][0] === board["row" + i][1] && board["row" + i][2] === board["row" + i][0] && board["row" + i][0] != "") {
             if (player1.turn === true) {
                 player1Win();
+
             } else {
-               // player2Win();
+                player2Win();
+
             }
         }
     }
@@ -262,8 +267,10 @@ function winCheck() {
             board.row1[i] && board.row1[i] != "") {
             if (player1.turn === true) {
                 player1Win();
+
             } else {
-               // player2Win();
+                player2Win();
+
             }
         }
     }
@@ -271,43 +278,53 @@ function winCheck() {
     if (board.row1[0] === board.row2[1] && board.row3[2] === board.row1[0] && board.row1[0] != "") {
         if (player1.turn === true) {
             player1Win();
+
         } else {
-           // player2Win();
+            player2Win();
+
         }
     }
     if (board.row3[0] === board.row2[1] && board.row1[2] === board.row3[0] && board.row3[0] != "") {
         if (player1.turn === true) {
             player1Win();
+
         } else {
-           // player2Win();
+            player2Win();
+
         }
     }
 }
 
 function player1Win() {
+    player1.turn = false;
+    player2.turn = false;
     const winMessage = document.querySelector(".win-message");
     const game = document.querySelector(".wrapper")
     winMessage.innerHTML = `${player1.marker} WINS!`
     winMessage.style.display = "block";
     game.style.webkitFilter = "blur(3px)"
+    player1.win = true;
+
+
+
+
 
 }
 
 function player2Win() {
+    player1.turn = false;
+    player2.turn = false;
     const winMessage = document.querySelector(".win-message");
     const game = document.querySelector(".wrapper")
     winMessage.innerHTML = `${player2.marker} WINS!`
     winMessage.style.display = "block";
     game.style.webkitFilter = "blur(3px)"
+    player2.win = true
+
+
+
+
 
 }
 
 
-/*
-const gameBoard = (() => {
-    const board = {
-        row1: ["", "", ""],
-        row2: ["", "", ""],
-        row3: ["", "", ""],
-    }
-*/ 
