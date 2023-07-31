@@ -271,6 +271,8 @@ const playerStuff = (() => {
 
 
 function winCheck() {
+  
+    let boardArray = [];
     const board = gameBoard.board;
     const winMessage = document.querySelector(".win-message");
     const game = document.querySelector(".wrapper")
@@ -279,9 +281,11 @@ function winCheck() {
         if (board["row" + i][0] === board["row" + i][1] && board["row" + i][2] === board["row" + i][0] && board["row" + i][0] != "") {
             if (player1.turn === true) {
                 player1Win();
+                
 
             } else {
                 player2Win();
+                
 
             }
         }
@@ -292,9 +296,11 @@ function winCheck() {
             board.row1[i] && board.row1[i] != "") {
             if (player1.turn === true) {
                 player1Win();
+                
 
             } else {
                 player2Win();
+                
 
             }
         }
@@ -303,21 +309,47 @@ function winCheck() {
     if (board.row1[0] === board.row2[1] && board.row3[2] === board.row1[0] && board.row1[0] != "") {
         if (player1.turn === true) {
             player1Win();
+            
 
         } else {
             player2Win();
+            
 
         }
     }
     if (board.row3[0] === board.row2[1] && board.row1[2] === board.row3[0] && board.row3[0] != "") {
         if (player1.turn === true) {
             player1Win();
+            
 
         } else {
             player2Win();
+            
 
         }
     }
+    
+    for (i=0; i <= 2; i++){
+        boardArray.push(board.row1[i]);
+        boardArray.push(board.row2[i]);
+        boardArray.push(board.row3[i]);
+        if (!boardArray.includes("") && boardArray.length == 9){
+            draw();
+        }
+    }
+
+}
+
+function draw() {
+    const winMessage = document.querySelector(".win-message");
+    const game = document.querySelector(".wrapper")
+    const buttons = document.querySelector(".reset-buttons")
+
+    winMessage.innerHTML = `It's a draw`
+    winMessage.style.display = "block";
+    buttons.style.display = "flex"
+    game.style.webkitFilter = "blur(3px)"
+    player1.win = true; 
 }
 
 function player1Win() {

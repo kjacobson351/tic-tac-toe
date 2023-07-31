@@ -52,6 +52,10 @@ table {
 }
 /* CSS RESET /////////////////////////////////////////*/
 
+html{
+
+}
+
 .start-screen{
 	display: flex;
 	justify-content: center;
@@ -73,6 +77,12 @@ table {
 	-webkit-box-shadow: 1px 22px 44px -5px rgba(0,0,0,0.45);
 -moz-box-shadow: 1px 22px 44px -5px rgba(0,0,0,0.45);
 box-shadow: 1px 22px 44px -5px rgba(0,0,0,0.45);
+color: white;
+font-size: 2rem;
+}
+
+.choice-wrapper h1{
+	font-family: 'Orbitron', sans-serif;
 }
 
 .selection-wrapper{
@@ -85,11 +95,26 @@ box-shadow: 1px 22px 44px -5px rgba(0,0,0,0.45);
 	border-radius: 10px;
 }
 
+.selection-wrapper i {
+	font-size: 3rem;
+}
+
+.selection-wrapper button{
+	font-family: 'Orbitron', sans-serif;
+	border-radius: 5px;
+	
+
+}
+
 #x-button{
 	display: none;
+	font-family: 'Orbitron', sans-serif;
+	border-radius: 5px;
 }
 #o-button{
 	display: none;
+	font-family: 'Orbitron', sans-serif;
+	border-radius: 5px;
 }
 
 
@@ -113,6 +138,7 @@ box-shadow: 1px 22px 44px -5px rgba(0,0,0,0.45);
 
 .win-message{
 display: none;
+font-family: 'Orbitron', sans-serif;
 position: absolute;
 width: 100%;
 height:	100%;
@@ -120,8 +146,10 @@ top: 49%;
 left: 0%;
 text-align:center;
 color: white;
-font-size: 2rem;
+font-size: 3rem;
 z-index: 2;
+-webkit-text-stroke-width: 1px;
+-webkit-text-stroke-color: black;
 }
 
 .reset-buttons {
@@ -146,7 +174,7 @@ z-index: 2;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	font-size: 25px;
+	font-size: 4rem;
 	color: white;	
 }
 
